@@ -14,4 +14,8 @@ export const routes: Routes = [
     path: 'criacao-de-tarefa',
     loadComponent: () => import('./criacao-de-tarefa/criacao-de-tarefa.page').then( m => m.CriacaoDeTarefaPage)
   },
+  {
+    path: 'tela-cadastro',
+    loadComponent: () => import('./tela-cadastro/tela-cadastro.page').then( m => m.TelaCadastroPage)
+  },
 ];
