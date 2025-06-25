@@ -1,0 +1,7 @@
+{
+  "name": "ATV-GERENCIADOR-DE-TAREFAS",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
