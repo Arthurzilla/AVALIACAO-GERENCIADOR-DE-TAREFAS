@@ -4,10 +4,49 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">criacao-de-tarefa</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="tarefaForm" (ngSubmit)="salvarTarefa()">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-textarea formControlName="descrição" rows="3"></ion-textarea>
+    </ion-item>
+
+    <ion-item class="ion-margin-top">
+      <ion-label position="floating">Responsável</ion-label>
+      <ion-input type="text" formControlName="responsável"></ion-input>
+    </ion-item>
+
+    <ion-card class="ion-margin-top">
+      <ion-card-header>
+        <ion-card-title>Etapas</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list formArrayName="steps">
+          <ion-item *ngFor="let step of steps.controls; let i = index">
+            <ion-label position="floating">Etapa {{i + 1}}</ion-label>
+            <ion-input [formControlName]="i"></ion-input>
+            <ion-buttons slot="end">
+              <ion-button (click)="removeStep(i)" color="danger">
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-list>
+        <ion-button expand="block" fill="outline" (click)="addStep()" class="ion-margin-top">
+          <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+          Adicionar Etapa
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button expand="block" type="submit" [disabled]="tarefaForm.invalid" class="ion-margin-top">
+      Salvar Tarefa
+    </ion-button>
+
+  </form>
 </ion-content>
